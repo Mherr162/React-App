@@ -1,6 +1,6 @@
 {
-  "name": "React-App",
-  "private": true,
+  "name": "@mike16/react-app",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mike16/react-app": "^0.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.3.0",
