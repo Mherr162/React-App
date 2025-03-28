@@ -44,8 +44,9 @@ function MovieDetails() {
 
     return movie ? (
         <div className="movie-details">
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+            
             <div className="details-content">
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
                 <h2>{movie.title}</h2>
                 <br/>
                 <p><strong>Release Date:</strong> {movie.release_date}</p>
