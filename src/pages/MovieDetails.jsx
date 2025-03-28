@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../css/MovieCard.css";
+import "../css/MovieDetails.css";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
-const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}&language=en-US`;
 
 function MovieDetails() {
     const { id } = useParams(); // Get movie ID from URL
@@ -45,9 +44,10 @@ function MovieDetails() {
 
     return movie ? (
         <div className="movie-details">
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="details-content">
                 <h2>{movie.title}</h2>
+                <br/>
                 <p><strong>Release Date:</strong> {movie.release_date}</p>
                 <p><strong>Overview:</strong> {movie.overview}</p>
                 <p><strong>Rating:</strong> {movie.vote_average} / 10</p>
@@ -55,6 +55,7 @@ function MovieDetails() {
                 {/* Embed the YouTube Trailer if available */}
                 {trailerKey ? (
                     <div className="trailer-container">
+                        <br/>
                         <h3>Watch Trailer</h3>
                         <iframe
                             width="560"
@@ -74,3 +75,11 @@ function MovieDetails() {
 }
 
 export default MovieDetails;
+
+
+
+
+
+
+//************************************************************************************* */
+
