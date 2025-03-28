@@ -1,0 +1,63 @@
+/* Center the entire movie details section */
+.details-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Align poster and details side by side */
+.movie-content {
+    display: flex;
+    align-items: flex-start; /* Align top */
+    justify-content: center;
+    gap: 30px; /* Space between poster and details */
+    width: 100%;
+}
+
+/* Style the poster */
+.movie-poster img {
+    width: 300px; /* Adjust size */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Style the details section */
+.movie-info {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 600px;
+}
+
+/* Style the movie title */
+.movie-info h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Style the overview text */
+.movie-info p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Center and style the trailer */
+.trailer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.trailer iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border-radius: 10px;
+}
