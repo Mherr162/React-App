@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../css/MovieDetails.css";
+import WatchProviders from "../components/WatchProviders";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
 
@@ -13,6 +14,12 @@ function MovieDetails() {
 
     useEffect(() => {
         async function fetchMovieDetails() {
+            if (!id) {
+                setError("No movie ID provided");
+                setLoading(false);
+                return;
+            }
+
             try {
                 // Fetch movie details
                 const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
@@ -26,7 +33,7 @@ function MovieDetails() {
                 const videoData = await videoResponse.json();
 
                 // Find the first official YouTube trailer
-                const trailer = videoData.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+                const trailer = videoData.results?.find(video => video.type === "Trailer" && video.site === "YouTube");
                 if (trailer) setTrailerKey(trailer.key);
             } catch (err) {
                 console.error("Fetch error:", err);
@@ -39,20 +46,40 @@ function MovieDetails() {
         fetchMovieDetails();
     }, [id]);
 
-    if (loading) return <p className="loading">Loading...</p>;
-    if (error) return <p className="error">{error}</p>;
+    if (loading) return <div className="loading">Loading movie details...</div>;
 
-    return movie ? (
+    if (error) return (
+        <div className="movie-details error-state">
+            <div className="error-message">{error}</div>
+            <Link to="/" className="back-button">Back to Movies</Link>
+        </div>
+    );
+
+    if (!movie) return (
+        <div className="movie-details error-state">
+            <div className="error-message">Movie not found</div>
+            <Link to="/" className="back-button">Back to Movies</Link>
+        </div>
+    );
+
+    // Handle case where movie poster is missing
+    const posterPath = movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : 'https://via.placeholder.com/500x750?text=No+Image+Available';
+
+    return (
         <div className="movie-details">
-            
             <div className="details-content">
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
-                <h2>{movie.title}</h2>
+                <img src={posterPath} alt={movie.title || 'Movie'} />
+                <h2>{movie.title || 'Untitled Movie'}</h2>
                 <br/>
-                <p><strong>Release Date:</strong> {movie.release_date}</p>
-                <p><strong>Overview:</strong> {movie.overview}</p>
-                <p><strong>Rating:</strong> {movie.vote_average} / 10</p>
-                
+                <p><strong>Release Date:</strong> {movie.release_date || 'Unknown'}</p>
+                <p><strong>Overview:</strong> {movie.overview || 'No overview available.'}</p>
+                <p><strong>Rating:</strong> {movie.vote_average ? `${movie.vote_average} / 10` : 'Not rated'}</p>
+
+                {/* Watch Providers */}
+                <WatchProviders movieId={id} />
+
                 {/* Embed the YouTube Trailer if available */}
                 {trailerKey ? (
                     <div className="trailer-container">
@@ -70,17 +97,11 @@ function MovieDetails() {
                 ) : (
                     <p>No trailer available.</p>
                 )}
+
+                <Link to="/" className="back-button">Back to Movies</Link>
             </div>
         </div>
-    ) : null;
+    );
 }
 
 export default MovieDetails;
-
-
-
-
-
-
-//************************************************************************************* */
-
