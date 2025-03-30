@@ -44,7 +44,6 @@ function Home() {
         setSearchQuery("") // set the state( set a new value after pressing search button)
 
     }
-
     return <div className="home">
 
         <form onSubmit={handleSearch} className="search-form">
