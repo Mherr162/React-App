@@ -31,7 +31,8 @@ npm install
 
 3. Set up environment variables:
    - Install dotenv dependency using the following command 
-   ```bash npm install dotenv --save
+   ```bash 
+   npm install dotenv --save
    ```
    - Create `.env` file in root dir and add it to the `.gitignore` file
    - Edit the `.env` file and add your TMDB API key
