@@ -30,10 +30,10 @@ npm install
 ```
 
 3. Set up environment variables:
-   - Copy the `.env.example` file to a new file named `.env`
-   ```bash
-   cp .env.example .env
+   - Install dotenv dependency using the following command 
+   ```bash npm install dotenv --save
    ```
+   - Create `.env` file in root dir and add it to the `.gitignore` file
    - Edit the `.env` file and add your TMDB API key
    - You can get your API key by creating an account at [https://www.themoviedb.org/](https://www.themoviedb.org/) and going to Settings > API
 
@@ -43,6 +43,9 @@ npm run dev
 ```
 
 5. Open your browser and navigate to [http://localhost:5173](http://localhost:5173)
+
+
+
 
 ## Environment Variables
 
