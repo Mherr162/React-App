@@ -1,5 +1,6 @@
 {
   "name": "@mike16/react-app",
+  "homepage": "https://Mherr162.github.io/react-app/",
   "private": false,
   "version": "0.1.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@mike16/react-app": "^0.0.0",
